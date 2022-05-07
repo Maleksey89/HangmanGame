@@ -7,7 +7,7 @@ namespace HangmanGame
 {
     internal class MainGame
     {
-        static string WordChoice(int difficulty)
+        private static string WordChoice(int difficulty)
         {
             List<string> fourLetter = new List<string> { "four", "good", "help", "fart" };
             List<string> sixLetter = new List<string> { "snazzy", "ornery", "coccyx", "python", "panzer" };
@@ -26,12 +26,13 @@ namespace HangmanGame
                 string randomWord = sixLetter[index];
                 return randomWord;
             }
-            else /*if (difficulty == 8)*/
+            else // (difficulty == 8)
             {
                 int index = random.Next(eightLetter.Count);
                 string randomWord = eightLetter[index];
                 return randomWord;
             }
+            
         }
         private static void showNoose(int miss)
         {
@@ -157,8 +158,8 @@ namespace HangmanGame
                     Console.Write(l + " ");
                 }
                 Console.Write("\r\n Guess a letter: ");
-                //string input = Console.ReadLine()[0]; //?? " "; // null error bs  
-                char guess = Console.ReadLine()[0];//char.Parse(input);    // had to parse to char to make it work
+                string input = Console.ReadLine() ?? " "; // null error bs  
+                char guess= char.Parse(input);    // = Console.ReadLine()[0];had to parse to char to make it work
                 if (lettersGuessed.Contains(guess))
                 {
                     Console.Write("\r\n{0} has already been guessed", guess);
@@ -198,6 +199,7 @@ namespace HangmanGame
                 }
             }
             Console.WriteLine("\nThank you for Playing the game");
+            Console.ReadLine();
         }
     }
 }
